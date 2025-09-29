@@ -11,7 +11,7 @@ from dynaphopy.interface.phonopy_link import get_force_sets_from_file, get_force
 ##################################  STRUCTURE FILES #######################################
 # 1. Set the directory in where the FORCE_SETS and structure POSCAR are placed
 
-directory ='/home/user/VASP/Si/2x2x2/'
+directory ='../Si_VASP/'
 structure = io.read_from_file_structure_poscar(directory + 'POSCAR')
 
 
@@ -25,7 +25,7 @@ structure.set_primitive_matrix([[0.0, 0.5, 0.5],
 # 3. Set the hamonic phonon data (input for phonopy)
 # fs_supercell: supercell matrix used in PHONOPY to obtain the force_sets
 # FORCE_SETS : force set file obtained from PHONOPY calculation that contains the forces
-structure.set_force_set(get_force_sets_from_file(file_name=directory + 'FORCE_SETS',
+structure.set_force_set(get_force_sets_from_file(file_name=directory + 'FORCE_SETS_2x2x2',
                                                  fs_supercell=[[2, 0, 0],
                                                                [0, 2, 0],
                                                                [0, 0, 2]]))
