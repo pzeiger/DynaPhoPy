@@ -441,7 +441,7 @@ power_spectrum_functions = {
     1: [get_mem_power_spectra, 'Maximum entropy method'],
     2: [get_fft_numpy_spectra, 'Fast Fourier transform (Numpy)'],
     3: [get_fft_fftw_power_spectra, 'Fast Fourier transform (FFTW)'],
-    4: [get_fft_cuda_power_spectra, 'Fast Fourier transform (CUDA)']
+    4: [get_fft_cuda_power_spectra, 'Fast Fourier transform (CUDA)'],
     5: [get_fft_cupy_spectra, 'Fast Fourier transform (CuPy)'],
 }
 
