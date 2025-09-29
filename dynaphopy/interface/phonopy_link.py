@@ -14,6 +14,30 @@ except ImportError:
     from phonopy.structure.atoms import Atoms as PhonopyAtoms
 
 
+class PhonopyLegacy(Phonopy):
+    """
+    subclass of Phonopy main class to support multiple versions of phonopy
+    """
+
+    def set_force_constants(self, force_constants):
+        self.force_constants = force_constants
+
+    def set_displacement_dataset(self, dataset):
+        self.dataset = dataset
+
+    def get_primitive(self):
+        return self.primitive
+
+    def get_supercell(self):
+        return self.supercell
+
+    def set_nac_params(self, nac_params):
+        self.nac_params = nac_params
+
+    def get_force_constants(self):
+        return self.force_constants
+
+
 class ForceConstants:
     def __init__(self, force_constants, supercell=None):
         self._force_constants = np.array(force_constants)
@@ -103,9 +127,9 @@ def get_phonon(structure, NAC=False, setup_forces=True, custom_supercell=None, s
                         scaled_positions=structure.get_scaled_positions(),
                         cell=structure.get_cell())
 
-    phonon = Phonopy(bulk, super_cell_phonon,
-                     primitive_matrix=structure.get_primitive_matrix(),
-                     symprec=symprec)
+    phonon = PhonopyLegacy(bulk, super_cell_phonon,
+                           primitive_matrix=structure.get_primitive_matrix(),
+                           symprec=symprec)
 
     # Non Analytical Corrections (NAC) from Phonopy [Frequencies only, eigenvectors no affected by this option]
 
@@ -334,7 +358,7 @@ def get_renormalized_force_constants(renormalized_frequencies, eigenvectors, str
     dynmat2fc = DynmatToForceConstants(primitive, supercell)
 
     size = structure.get_number_of_dimensions() * structure.get_number_of_primitive_atoms()
-    eigenvectors = np.array([eigenvector.reshape(size, size, order='C').T for eigenvector in eigenvectors ])
+    eigenvectors = np.array([eigenvector.reshape(size, size, order='C').T for eigenvector in eigenvectors])
     renormalized_frequencies = np.array(renormalized_frequencies)
 
     try:
