@@ -199,7 +199,9 @@ class Dynamics:
                 print('Warning! Defined unit cell and MD supercell do not match!')
                 print('Cell size relation is not integer: {0}'.format(supercell_matrix_real))
                 exit()
-
+            
+            print(supercell_matrix_real, self._supercell_matrix )
+            
             print('MD cell size relation: {0}'.format(self._supercell_matrix))
 
         return self._supercell_matrix

@@ -229,7 +229,8 @@ def read_lammps_trajectory(file_name, structure=None, time_step=None,
                 bounds = np.array(bounds, dtype=float)
                 if bounds.shape[1] == 2:
                     bounds = np.append(bounds, np.array([0, 0, 0])[None].T ,axis=1)
-
+                
+                print('bounds', bounds)
                 xy = bounds[0, 2]
                 xz = bounds[1, 2]
                 yz = bounds[2, 2]
@@ -244,7 +245,7 @@ def read_lammps_trajectory(file_name, structure=None, time_step=None,
                 supercell = np.array([[xhi-xlo, xy,  xz],
                                        [0,  yhi-ylo,  yz],
                                        [0,   0,  zhi-zlo]]).T
-
+                print('supercell', supercell)
                 #for 2D
                 supercell = supercell[:number_of_dimensions, :number_of_dimensions]
 
@@ -260,6 +261,8 @@ def read_lammps_trajectory(file_name, structure=None, time_step=None,
                 alpha = np.arccos((xy*xz + ly*yz)/(b*c))
                 beta = np.arccos(xz/c)
                 gamma = np.arccos(xy/b)
+
+                print(a, b, c)
 
                 # End testing cell
 
