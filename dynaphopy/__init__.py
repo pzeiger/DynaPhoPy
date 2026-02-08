@@ -650,7 +650,7 @@ class Quasiparticle:
             modes = [0]
         plt.suptitle('Phonon mode projection')
         plt.xlabel('Time [ps]')
-        plt.ylabel('$u^{1/2}\AA/ps$')
+        plt.ylabel(r'$u^{1/2}\AA/ps$')
 
         time = np.linspace(0, self.get_vc().shape[0] * self.dynamic.get_time_step_average(),
                            num=self.get_vc().shape[0])
@@ -670,7 +670,7 @@ class Quasiparticle:
 
         plt.suptitle('Wave vector projection')
         plt.xlabel('Time [ps]')
-        plt.ylabel('$u^{1/2}\AA/ps$')
+        plt.ylabel(r'$u^{1/2}\AA/ps$')
 
         for atom in atoms:
             for coordinate in coordinates:
@@ -972,7 +972,7 @@ class Quasiparticle:
 
         plt.legend()
         plt.xlabel('Time [ps]')
-        plt.ylabel('$\AA/ps$')
+        plt.ylabel(r'$\AA/ps$')
         plt.show()
 
     def plot_energy(self):
@@ -1470,8 +1470,7 @@ def _vector_in_list(vector_test_list, vector_full_list):
 
 
 def replace_list(text_string):
-    substitutions = {'GAMMA': u'$\Gamma$',
-                     }
+    substitutions = {'GAMMA': r'$\Gamma$',}
 
     for item in substitutions.items():
         text_string = text_string.replace(item[0], item[1])
